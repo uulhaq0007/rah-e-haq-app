@@ -4,6 +4,7 @@
   { "name": "zakat-calculator", "route": "/zakat?demo=1&shot=1", "statusBar": "light", "wait": 3500 },
   { "name": "home-urdu", "route": "/?lang=ur&shot=1", "statusBar": "light", "wait": 5000 },
   { "name": "volunteer-application", "route": "/volunteer?demo=1&shot=1", "statusBar": "light", "wait": 3500 },
+  { "name": "campaign-detail", "route": "/campaign/ramadan-ration-drive?shot=1", "statusBar": "light", "wait": 3500 },
   { "name": "donation-history", "route": "/profile/donations?shot=1", "statusBar": "dark", "wait": 3500 },
   { "name": "home-dark", "route": "/?theme=dark&shot=1", "statusBar": "light", "wait": 3500 }
 ]
