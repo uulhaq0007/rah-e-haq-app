@@ -108,7 +108,12 @@ class GlassPanel extends StatelessWidget {
 
 /// Logo in a white disc, optionally followed by the name and tagline.
 class BrandMark extends StatelessWidget {
-  const BrandMark({super.key, this.size = 42, this.showName = true, this.onDark = true});
+  const BrandMark({
+    super.key,
+    this.size = 42,
+    this.showName = true,
+    this.onDark = true,
+  });
 
   final double size;
   final bool showName;
@@ -118,8 +123,9 @@ class BrandMark extends StatelessWidget {
   Widget build(BuildContext context) {
     final s = context.s;
     final nameColor = onDark ? Colors.white : context.palette.strong;
-    final taglineColor =
-        onDark ? Colors.white.withValues(alpha: 0.7) : context.palette.muted;
+    final taglineColor = onDark
+        ? Colors.white.withValues(alpha: 0.7)
+        : context.palette.muted;
     final logo = Container(
       width: size,
       height: size,
@@ -143,26 +149,32 @@ class BrandMark extends StatelessWidget {
       children: [
         logo,
         const SizedBox(width: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              s.appName,
-              style: context.text.titleMedium?.copyWith(
-                color: nameColor,
-                fontWeight: FontWeight.w700,
-                height: context.isUrdu ? 1.6 : 1.2,
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                s.appName,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: context.text.titleMedium?.copyWith(
+                  color: nameColor,
+                  fontWeight: FontWeight.w700,
+                  height: context.isUrdu ? 1.6 : 1.2,
+                ),
               ),
-            ),
-            Text(
-              s.tagline,
-              style: context.text.bodySmall?.copyWith(
-                color: taglineColor,
-                height: context.isUrdu ? 1.6 : 1.3,
+              Text(
+                s.tagline,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: context.text.bodySmall?.copyWith(
+                  color: taglineColor,
+                  height: context.isUrdu ? 1.6 : 1.3,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );
@@ -181,8 +193,17 @@ class LanguagePill extends StatelessWidget {
     final settings = context.settings;
     final foreground = onDark ? Colors.white : context.palette.brand;
     final label = settings.isUrdu
-        ? AppFonts.body(fontSize: 13, fontWeight: FontWeight.w600, color: foreground)
-        : AppFonts.urdu(fontSize: 13, fontWeight: FontWeight.w600, color: foreground, height: 1.5);
+        ? AppFonts.body(
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+            color: foreground,
+          )
+        : AppFonts.urdu(
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+            color: foreground,
+            height: 1.5,
+          );
     return Material(
       color: onDark
           ? Colors.white.withValues(alpha: 0.12)

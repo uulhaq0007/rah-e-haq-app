@@ -183,12 +183,18 @@ class SectionHeader extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(actionLabel!,
-                    style: context.text.labelMedium
-                        ?.copyWith(color: context.palette.brand)),
+                Text(
+                  actionLabel!,
+                  style: context.text.labelMedium?.copyWith(
+                    color: context.palette.brand,
+                  ),
+                ),
                 const SizedBox(width: 2),
-                Icon(Icons.chevron_right_rounded,
-                    size: 18, color: context.palette.brand),
+                Icon(
+                  Icons.chevron_right_rounded,
+                  size: 18,
+                  color: context.palette.brand,
+                ),
               ],
             ),
           ),
@@ -214,7 +220,8 @@ class GradientProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final track = trackColor ??
+    final track =
+        trackColor ??
         (Theme.of(context).brightness == Brightness.dark
             ? AppColors.slate700
             : AppColors.slate100);
@@ -332,9 +339,7 @@ class SelectChip extends StatelessWidget {
         color: selected ? Colors.white : Colors.white.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(99),
         border: Border.all(
-          color: selected
-              ? Colors.white
-              : Colors.white.withValues(alpha: 0.25),
+          color: selected ? Colors.white : Colors.white.withValues(alpha: 0.25),
           width: 1.5,
         ),
       );
@@ -399,7 +404,12 @@ class SelectChip extends StatelessWidget {
 
 /// Label above an input, with a red asterisk for required fields.
 class FieldLabel extends StatelessWidget {
-  const FieldLabel(this.label, {super.key, this.required = false, this.optional});
+  const FieldLabel(
+    this.label, {
+    super.key,
+    this.required = false,
+    this.optional,
+  });
 
   final String label;
   final bool required;
@@ -420,10 +430,7 @@ class FieldLabel extends StatelessWidget {
                 style: TextStyle(color: AppColors.red500),
               ),
             if (optional != null)
-              TextSpan(
-                text: ' $optional',
-                style: context.text.bodySmall,
-              ),
+              TextSpan(text: ' $optional', style: context.text.bodySmall),
           ],
         ),
       ),
@@ -478,32 +485,41 @@ class AppTextField extends StatelessWidget {
     final style = ltr
         ? AppFonts.body(fontSize: 15, color: palette.strong, height: 1.4)
         : context.text.bodyLarge?.copyWith(color: palette.strong);
+    final field = TextField(
+      controller: controller,
+      keyboardType: keyboardType,
+      maxLines: maxLines,
+      minLines: maxLines > 1 ? maxLines : null,
+      style: style,
+      onChanged: onChanged,
+      inputFormatters: inputFormatters,
+      textInputAction: textInputAction,
+      decoration: InputDecoration(
+        hintText: hint,
+        errorText: errorText,
+        prefixIcon: prefixIcon == null
+            ? null
+            : Icon(prefixIcon, size: 20, color: palette.muted),
+        prefixText: prefixText,
+        prefixStyle: AppTheme.figure(
+          15,
+          weight: FontWeight.w600,
+          color: palette.muted,
+        ),
+        suffixText: suffixText,
+        suffixStyle: context.text.bodySmall,
+      ),
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         FieldLabel(label, required: required, optional: optional),
-        TextField(
-          controller: controller,
-          keyboardType: keyboardType,
-          maxLines: maxLines,
-          minLines: maxLines > 1 ? maxLines : null,
-          style: style,
-          textDirection: ltr ? TextDirection.ltr : null,
-          onChanged: onChanged,
-          inputFormatters: inputFormatters,
-          textInputAction: textInputAction,
-          decoration: InputDecoration(
-            hintText: hint,
-            errorText: errorText,
-            prefixIcon: prefixIcon == null
-                ? null
-                : Icon(prefixIcon, size: 20, color: palette.muted),
-            prefixText: prefixText,
-            prefixStyle: AppTheme.figure(15, weight: FontWeight.w600, color: palette.muted),
-            suffixText: suffixText,
-            suffixStyle: context.text.bodySmall,
-          ),
-        ),
+        // Values such as "Rs. 1,500" or an email read left-to-right even in
+        // Urdu, so the whole field (prefix and suffix too) flips to LTR.
+        if (ltr)
+          Directionality(textDirection: TextDirection.ltr, child: field)
+        else
+          field,
         if (helper != null) ...[const SizedBox(height: 6), helper!],
       ],
     );
@@ -528,7 +544,11 @@ class ErrorBanner extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.error_outline_rounded, color: AppColors.red500, size: 20),
+          const Icon(
+            Icons.error_outline_rounded,
+            color: AppColors.red500,
+            size: 20,
+          ),
           const SizedBox(width: 10),
           Expanded(
             child: Text(
@@ -580,8 +600,11 @@ class CopyRow extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       textDirection: TextDirection.ltr,
-                      style: AppTheme.figure(14.5,
-                          weight: FontWeight.w600, color: palette.strong),
+                      style: AppTheme.figure(
+                        14.5,
+                        weight: FontWeight.w600,
+                        color: palette.strong,
+                      ),
                     ),
                   ],
                 ),
@@ -593,8 +616,11 @@ class CopyRow extends StatelessWidget {
                   color: palette.brandSoft,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(Icons.content_copy_rounded,
-                    size: 17, color: palette.brand),
+                child: Icon(
+                  Icons.content_copy_rounded,
+                  size: 17,
+                  color: palette.brand,
+                ),
               ),
             ],
           ),
@@ -653,10 +679,14 @@ class DetailRow extends StatelessWidget {
               value,
               textAlign: TextAlign.end,
               textDirection: figure ? TextDirection.ltr : null,
-              style: valueStyle ??
+              style:
+                  valueStyle ??
                   (figure
-                      ? AppTheme.figure(14,
-                          weight: FontWeight.w600, color: palette.strong)
+                      ? AppTheme.figure(
+                          14,
+                          weight: FontWeight.w600,
+                          color: palette.strong,
+                        )
                       : context.text.titleSmall),
             ),
           ),
@@ -701,10 +731,9 @@ class _DashedPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.6;
     final path = Path()
-      ..addRRect(RRect.fromRectAndRadius(
-        Offset.zero & size,
-        Radius.circular(radius),
-      ));
+      ..addRRect(
+        RRect.fromRectAndRadius(Offset.zero & size, Radius.circular(radius)),
+      );
     for (final ui.PathMetric metric in path.computeMetrics()) {
       var distance = 0.0;
       while (distance < metric.length) {

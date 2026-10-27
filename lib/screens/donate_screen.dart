@@ -137,8 +137,8 @@ class _DonateScreenState extends State<DonateScreen> {
       _showErrors && _name.text.trim().isEmpty ? context.s.errName : null;
   String? _emailError(BuildContext context) =>
       _showErrors && !_emailPattern.hasMatch(_email.text.trim())
-          ? context.s.errEmail
-          : null;
+      ? context.s.errEmail
+      : null;
   String? _screenshotError(BuildContext context) =>
       _showErrors && _attachment == null ? context.s.errScreenshot : null;
 
@@ -215,6 +215,7 @@ class _DonateScreenState extends State<DonateScreen> {
     ];
     final picked = await showModalBottomSheet<_Attachment>(
       context: context,
+      useRootNavigator: true,
       useSafeArea: true,
       isScrollControlled: true,
       builder: (sheetContext) {
@@ -237,7 +238,8 @@ class _DonateScreenState extends State<DonateScreen> {
                       Expanded(
                         child: InkWell(
                           borderRadius: BorderRadius.circular(18),
-                          onTap: () => Navigator.of(sheetContext).pop(options[i]),
+                          onTap: () =>
+                              Navigator.of(sheetContext).pop(options[i]),
                           child: Column(
                             children: [
                               ReceiptPreview(
@@ -440,7 +442,10 @@ class _Header extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  EyebrowPill(label: s.donateBadge, icon: Icons.favorite_rounded),
+                  EyebrowPill(
+                    label: s.donateBadge,
+                    icon: Icons.favorite_rounded,
+                  ),
                   const SizedBox(height: 10),
                   HighlightTitle(
                     lead: s.donateTitleLead,
@@ -460,7 +465,11 @@ class _Header extends StatelessWidget {
                   onTap: onHistory,
                   child: SizedBox.square(
                     dimension: 44,
-                    child: Icon(Icons.receipt_long_rounded, color: palette.brand, size: 21),
+                    child: Icon(
+                      Icons.receipt_long_rounded,
+                      color: palette.brand,
+                      size: 21,
+                    ),
                   ),
                 ),
               ),
@@ -489,16 +498,24 @@ class _StepsStrip extends StatelessWidget {
         border: Border.all(color: palette.border),
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           for (var i = 0; i < steps.length; i++) ...[
             if (i > 0)
-              Icon(Icons.chevron_right_rounded, size: 18, color: palette.muted),
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Icon(
+                  Icons.chevron_right_rounded,
+                  size: 18,
+                  color: palette.muted,
+                ),
+              ),
             Expanded(
-              child: Row(
+              child: Column(
                 children: [
                   Container(
-                    width: 24,
-                    height: 24,
+                    width: 26,
+                    height: 26,
                     alignment: Alignment.center,
                     decoration: const BoxDecoration(
                       color: AppColors.secondary,
@@ -506,18 +523,21 @@ class _StepsStrip extends StatelessWidget {
                     ),
                     child: Text(
                       '${i + 1}',
-                      style: AppTheme.figure(12, color: Colors.white, height: 1),
+                      style: AppTheme.figure(
+                        12.5,
+                        color: Colors.white,
+                        height: 1,
+                      ),
                     ),
                   ),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: Text(
-                      steps[i],
-                      maxLines: 2,
-                      style: context.text.labelMedium?.copyWith(
-                        color: palette.strong,
-                        height: context.isUrdu ? 1.6 : 1.2,
-                      ),
+                  const SizedBox(height: 6),
+                  Text(
+                    steps[i],
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                    style: context.text.labelMedium?.copyWith(
+                      color: palette.strong,
+                      height: context.isUrdu ? 1.5 : 1.2,
                     ),
                   ),
                 ],
@@ -569,10 +589,12 @@ class _AmountCard extends StatelessWidget {
               height: 200,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                gradient: RadialGradient(colors: [
-                  AppColors.secondary.withValues(alpha: 0.3),
-                  AppColors.secondary.withValues(alpha: 0),
-                ]),
+                gradient: RadialGradient(
+                  colors: [
+                    AppColors.secondary.withValues(alpha: 0.3),
+                    AppColors.secondary.withValues(alpha: 0),
+                  ],
+                ),
               ),
             ),
           ),
@@ -583,8 +605,9 @@ class _AmountCard extends StatelessWidget {
               children: [
                 Text(
                   urdu ? s.amountTitle : s.amountTitle.toUpperCase(),
-                  style: context.text.labelSmall
-                      ?.copyWith(color: Colors.white.withValues(alpha: 0.72)),
+                  style: context.text.labelSmall?.copyWith(
+                    color: Colors.white.withValues(alpha: 0.72),
+                  ),
                 ),
                 Directionality(
                   textDirection: TextDirection.ltr,
@@ -593,9 +616,11 @@ class _AmountCard extends StatelessWidget {
                     children: [
                       Text(
                         'Rs.',
-                        style: AppTheme.figure(22,
-                            weight: FontWeight.w600,
-                            color: Colors.white.withValues(alpha: 0.6)),
+                        style: AppTheme.figure(
+                          22,
+                          weight: FontWeight.w600,
+                          color: Colors.white.withValues(alpha: 0.6),
+                        ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
@@ -611,21 +636,32 @@ class _AmountCard extends StatelessWidget {
                             enabledBorder: InputBorder.none,
                             focusedBorder: InputBorder.none,
                             isDense: true,
-                            contentPadding: const EdgeInsets.symmetric(vertical: 6),
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 6,
+                            ),
                             hintText: '0',
-                            hintStyle: AppTheme.figure(38,
-                                color: Colors.white.withValues(alpha: 0.35)),
+                            hintStyle: AppTheme.figure(
+                              38,
+                              color: Colors.white.withValues(alpha: 0.35),
+                            ),
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                Container(height: 1, color: Colors.white.withValues(alpha: 0.18)),
+                Container(
+                  height: 1,
+                  color: Colors.white.withValues(alpha: 0.18),
+                ),
                 if (error != null) ...[
                   const SizedBox(height: 6),
-                  Text(error!,
-                      style: context.text.bodySmall?.copyWith(color: AppColors.amber300)),
+                  Text(
+                    error!,
+                    style: context.text.bodySmall?.copyWith(
+                      color: AppColors.amber300,
+                    ),
+                  ),
                 ],
                 const SizedBox(height: 14),
                 Wrap(
@@ -650,22 +686,29 @@ class _AmountCard extends StatelessWidget {
                       ? Text(
                           s.customAmountHint,
                           style: context.text.bodySmall?.copyWith(
-                              color: Colors.white.withValues(alpha: 0.7)),
+                            color: Colors.white.withValues(alpha: 0.7),
+                          ),
                         )
                       : Container(
                           width: double.infinity,
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 10),
+                            horizontal: 12,
+                            vertical: 10,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(16),
                             border: Border.all(
-                                color: Colors.white.withValues(alpha: 0.14)),
+                              color: Colors.white.withValues(alpha: 0.14),
+                            ),
                           ),
                           child: Row(
                             children: [
-                              const Icon(Icons.volunteer_activism_rounded,
-                                  color: AppColors.amber400, size: 20),
+                              const Icon(
+                                Icons.volunteer_activism_rounded,
+                                color: AppColors.amber400,
+                                size: 20,
+                              ),
                               const SizedBox(width: 10),
                               Expanded(
                                 child: Text.rich(
@@ -674,7 +717,10 @@ class _AmountCard extends StatelessWidget {
                                       TextSpan(
                                         text: '${s.impactLabel}: ',
                                         style: TextStyle(
-                                            color: Colors.white.withValues(alpha: 0.7)),
+                                          color: Colors.white.withValues(
+                                            alpha: 0.7,
+                                          ),
+                                        ),
                                       ),
                                       TextSpan(
                                         text: tier.impact.of(urdu),
@@ -756,7 +802,12 @@ class _CampaignBanner extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(campaign.image, width: 48, height: 48, fit: BoxFit.cover),
+            child: Image.asset(
+              campaign.image,
+              width: 48,
+              height: 48,
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -873,18 +924,18 @@ class _MethodPicker extends StatelessWidget {
     final palette = context.palette;
     final rows = switch (selected) {
       PaymentMethod.bank => [
-          CopyRow(label: s.iban, value: SampleData.bankIban),
-          CopyRow(label: s.accountTitle, value: SampleData.bankAccountTitle),
-          CopyRow(label: s.bankName, value: SampleData.bankName),
-        ],
+        CopyRow(label: s.iban, value: SampleData.bankIban),
+        CopyRow(label: s.accountTitle, value: SampleData.bankAccountTitle),
+        CopyRow(label: s.bankName, value: SampleData.bankName),
+      ],
       PaymentMethod.jazzcash => [
-          CopyRow(label: s.mobileNumber, value: SampleData.jazzcashNumber),
-          CopyRow(label: s.accountName, value: SampleData.jazzcashName),
-        ],
+        CopyRow(label: s.mobileNumber, value: SampleData.jazzcashNumber),
+        CopyRow(label: s.accountName, value: SampleData.jazzcashName),
+      ],
       PaymentMethod.easypaisa => [
-          CopyRow(label: s.mobileNumber, value: SampleData.easypaisaNumber),
-          CopyRow(label: s.accountName, value: SampleData.easypaisaName),
-        ],
+        CopyRow(label: s.mobileNumber, value: SampleData.easypaisaNumber),
+        CopyRow(label: s.accountName, value: SampleData.easypaisaName),
+      ],
     };
 
     return Column(
@@ -905,7 +956,10 @@ class _MethodPicker extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 14),
-        Text(s.transferTo, style: context.text.bodySmall?.copyWith(color: palette.body)),
+        Text(
+          s.transferTo,
+          style: context.text.bodySmall?.copyWith(color: palette.body),
+        ),
         const SizedBox(height: 10),
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 220),
@@ -954,7 +1008,12 @@ class _MethodTile extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 6),
             child: Column(
               children: [
-                IconTile(icon: method.icon, color: method.color, size: 34, solid: true),
+                IconTile(
+                  icon: method.icon,
+                  color: method.color,
+                  size: 34,
+                  solid: true,
+                ),
                 const SizedBox(height: 7),
                 FittedBox(
                   fit: BoxFit.scaleDown,
@@ -997,7 +1056,9 @@ class _ScreenshotField extends StatelessWidget {
 
     if (file == null) {
       return DashedBorder(
-        color: hasError ? AppColors.red500 : palette.muted.withValues(alpha: 0.6),
+        color: hasError
+            ? AppColors.red500
+            : palette.muted.withValues(alpha: 0.6),
         child: Material(
           type: MaterialType.transparency,
           child: InkWell(
@@ -1014,15 +1075,24 @@ class _ScreenshotField extends StatelessWidget {
                       color: palette.brandSoft,
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(Icons.add_photo_alternate_rounded,
-                        color: palette.brand, size: 26),
+                    child: Icon(
+                      Icons.add_photo_alternate_rounded,
+                      color: palette.brand,
+                      size: 26,
+                    ),
                   ),
                   const SizedBox(height: 12),
-                  Text(s.uploadPrompt,
-                      textAlign: TextAlign.center, style: context.text.titleSmall),
+                  Text(
+                    s.uploadPrompt,
+                    textAlign: TextAlign.center,
+                    style: context.text.titleSmall,
+                  ),
                   const SizedBox(height: 2),
-                  Text(s.uploadHint,
-                      textAlign: TextAlign.center, style: context.text.bodySmall),
+                  Text(
+                    s.uploadHint,
+                    textAlign: TextAlign.center,
+                    style: context.text.bodySmall,
+                  ),
                 ],
               ),
             ),
@@ -1036,7 +1106,10 @@ class _ScreenshotField extends StatelessWidget {
       decoration: BoxDecoration(
         color: palette.surfaceAlt,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: palette.brand.withValues(alpha: 0.35), width: 1.5),
+        border: Border.all(
+          color: palette.brand.withValues(alpha: 0.35),
+          width: 1.5,
+        ),
       ),
       child: Row(
         children: [
@@ -1055,8 +1128,11 @@ class _ScreenshotField extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.check_circle_rounded,
-                        color: AppColors.accent, size: 18),
+                    const Icon(
+                      Icons.check_circle_rounded,
+                      color: AppColors.accent,
+                      size: 18,
+                    ),
                     const SizedBox(width: 6),
                     Expanded(
                       child: Text(
@@ -1065,8 +1141,11 @@ class _ScreenshotField extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         textDirection: TextDirection.ltr,
                         textAlign: TextAlign.start,
-                        style: AppTheme.figure(14,
-                            weight: FontWeight.w600, color: palette.strong),
+                        style: AppTheme.figure(
+                          14,
+                          weight: FontWeight.w600,
+                          color: palette.strong,
+                        ),
                       ),
                     ),
                   ],
@@ -1134,8 +1213,10 @@ class _SmallAction extends StatelessWidget {
             children: [
               Icon(icon, size: 15, color: foreground),
               const SizedBox(width: 5),
-              Text(label,
-                  style: context.text.labelMedium?.copyWith(color: foreground)),
+              Text(
+                label,
+                style: context.text.labelMedium?.copyWith(color: foreground),
+              ),
             ],
           ),
         ),
@@ -1193,7 +1274,10 @@ class _DonateSuccess extends StatelessWidget {
                               Text(
                                 donation.reference,
                                 textDirection: TextDirection.ltr,
-                                style: AppTheme.figure(18, color: palette.strong),
+                                style: AppTheme.figure(
+                                  18,
+                                  color: palette.strong,
+                                ),
                               ),
                             ],
                           ),
@@ -1204,9 +1288,15 @@ class _DonateSuccess extends StatelessWidget {
                             backgroundColor: palette.brandSoft,
                             foregroundColor: palette.brand,
                           ),
-                          onPressed: () =>
-                              copyToClipboard(context, donation.reference, s.reference),
-                          icon: const Icon(Icons.content_copy_rounded, size: 18),
+                          onPressed: () => copyToClipboard(
+                            context,
+                            donation.reference,
+                            s.reference,
+                          ),
+                          icon: const Icon(
+                            Icons.content_copy_rounded,
+                            size: 18,
+                          ),
                         ),
                       ],
                     ),
@@ -1217,13 +1307,23 @@ class _DonateSuccess extends StatelessWidget {
                       figure: true,
                       valueStyle: AppTheme.figure(16, color: palette.brand),
                     ),
-                    DetailRow(label: s.causeLabel, value: donation.cause.label(s)),
+                    DetailRow(
+                      label: s.causeLabel,
+                      value: donation.cause.label(s),
+                    ),
                     if (campaign != null)
-                      DetailRow(label: s.campaignLabel, value: campaign.title.of(urdu)),
-                    DetailRow(label: s.methodLabel, value: donation.method.label(s)),
+                      DetailRow(
+                        label: s.campaignLabel,
+                        value: campaign.title.of(urdu),
+                      ),
+                    DetailRow(
+                      label: s.methodLabel,
+                      value: donation.method.label(s),
+                    ),
                     DetailRow(
                       label: s.dateLabel,
-                      value: '${formatDate(donation.date, s)} · ${formatTime(donation.date)}',
+                      value:
+                          '${formatDate(donation.date, s)} · ${formatTime(donation.date)}',
                     ),
                   ],
                 ),

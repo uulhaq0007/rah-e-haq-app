@@ -1,11 +1,11 @@
 {
-    "name": "rah_e_haq_app",
-    "short_name": "rah_e_haq_app",
+    "name": "Rah-E-Haq",
+    "short_name": "Rah-E-Haq",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#0f766e",
+    "theme_color": "#0f766e",
+    "description": "Rah-E-Haq \u2014 donate, calculate Zakat and volunteer with a welfare NGO.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

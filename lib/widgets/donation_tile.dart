@@ -81,7 +81,8 @@ class VerificationTimeline extends StatelessWidget {
                           child: Container(
                             width: 2,
                             margin: const EdgeInsets.symmetric(vertical: 4),
-                            color: steps[i].state == _StepState.done &&
+                            color:
+                                steps[i].state == _StepState.done &&
                                     steps[i + 1].state != _StepState.upcoming
                                 ? green.withValues(alpha: 0.5)
                                 : palette.border,
@@ -109,7 +110,10 @@ class VerificationTimeline extends StatelessWidget {
                           ),
                         ),
                         if (steps[i].subtitle.isNotEmpty)
-                          Text(steps[i].subtitle, style: context.text.bodySmall),
+                          Text(
+                            steps[i].subtitle,
+                            style: context.text.bodySmall,
+                          ),
                       ],
                     ),
                   ),
@@ -153,7 +157,9 @@ class _Dot extends StatelessWidget {
       height: 30,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: upcoming ? Colors.transparent : step.color.withValues(alpha: 0.14),
+        color: upcoming
+            ? Colors.transparent
+            : step.color.withValues(alpha: 0.14),
         border: Border.all(
           color: upcoming ? context.palette.border : step.color,
           width: step.state == _StepState.current ? 2 : 1.5,
@@ -185,7 +191,11 @@ class DonationTile extends StatelessWidget {
       radius: 20,
       child: Row(
         children: [
-          IconTile(icon: donation.cause.icon, color: donation.cause.color, size: 46),
+          IconTile(
+            icon: donation.cause.icon,
+            color: donation.cause.color,
+            size: 46,
+          ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(

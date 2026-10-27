@@ -85,14 +85,32 @@ abstract final class SampleData {
       location: Localized('Karachi', 'کراچی'),
       reach: Localized('500 families', '500 خاندان'),
       uses: [
-        CampaignUse(500, Localized('A meal for a family of 4', 'چار افراد کے خاندان کے لیے ایک وقت کا کھانا')),
-        CampaignUse(2000, Localized('Monthly food ration for one family', 'ایک خاندان کے لیے ماہانہ راشن')),
-        CampaignUse(10000, Localized('Rations for five families', 'پانچ خاندانوں کا راشن')),
+        CampaignUse(
+          500,
+          Localized(
+            'A meal for a family of 4',
+            'چار افراد کے خاندان کے لیے ایک وقت کا کھانا',
+          ),
+        ),
+        CampaignUse(
+          2000,
+          Localized(
+            'Monthly food ration for one family',
+            'ایک خاندان کے لیے ماہانہ راشن',
+          ),
+        ),
+        CampaignUse(
+          10000,
+          Localized('Rations for five families', 'پانچ خاندانوں کا راشن'),
+        ),
       ],
     ),
     Campaign(
       id: 'school-supplies',
-      title: Localized('School Supplies for 200 Students', '200 طلبہ کے لیے تعلیمی سامان'),
+      title: Localized(
+        'School Supplies for 200 Students',
+        '200 طلبہ کے لیے تعلیمی سامان',
+      ),
       summary: Localized(
         'Bags, books and uniforms for children in community schools.',
         'کمیونٹی اسکولوں کے بچوں کے لیے بستے، کتابیں اور یونیفارم۔',
@@ -110,8 +128,20 @@ abstract final class SampleData {
       location: Localized('Lahore', 'لاہور'),
       reach: Localized('200 students', '200 طلبہ'),
       uses: [
-        CampaignUse(5000, Localized('School supplies for one child', 'ایک بچے کے لیے تعلیمی سامان')),
-        CampaignUse(25000, Localized('Sponsor education for one child/month', 'ایک بچے کی ماہانہ تعلیمی کفالت')),
+        CampaignUse(
+          5000,
+          Localized(
+            'School supplies for one child',
+            'ایک بچے کے لیے تعلیمی سامان',
+          ),
+        ),
+        CampaignUse(
+          25000,
+          Localized(
+            'Sponsor education for one child/month',
+            'ایک بچے کی ماہانہ تعلیمی کفالت',
+          ),
+        ),
       ],
     ),
     Campaign(
@@ -134,8 +164,17 @@ abstract final class SampleData {
       location: Localized('Rawalpindi', 'راولپنڈی'),
       reach: Localized('300 patients', '300 مریض'),
       uses: [
-        CampaignUse(2000, Localized('Medicines for one patient', 'ایک مریض کی ادویات')),
-        CampaignUse(10000, Localized('Medical supplies for community camp', 'کمیونٹی کیمپ کے لیے طبی سامان')),
+        CampaignUse(
+          2000,
+          Localized('Medicines for one patient', 'ایک مریض کی ادویات'),
+        ),
+        CampaignUse(
+          10000,
+          Localized(
+            'Medical supplies for community camp',
+            'کمیونٹی کیمپ کے لیے طبی سامان',
+          ),
+        ),
       ],
     ),
     Campaign(
@@ -158,8 +197,14 @@ abstract final class SampleData {
       location: Localized('Islamabad', 'اسلام آباد'),
       reach: Localized('150 children', '150 بچے'),
       uses: [
-        CampaignUse(2000, Localized('One complete Eid gift box', 'عید کا ایک مکمل تحفہ')),
-        CampaignUse(10000, Localized('Gifts for five children', 'پانچ بچوں کے تحائف')),
+        CampaignUse(
+          2000,
+          Localized('One complete Eid gift box', 'عید کا ایک مکمل تحفہ'),
+        ),
+        CampaignUse(
+          10000,
+          Localized('Gifts for five children', 'پانچ بچوں کے تحائف'),
+        ),
       ],
     ),
   ];
@@ -237,11 +282,38 @@ abstract final class SampleData {
 
   // Donation scale ----------------------------------------------------------------
   static const tiers = [
-    DonationTier(500, Localized('Provides a meal for a family of 4', 'چار افراد کے خاندان کے لیے ایک وقت کا کھانا')),
-    DonationTier(2000, Localized('Monthly food ration for one family', 'ایک خاندان کے لیے ماہانہ راشن')),
-    DonationTier(5000, Localized('School supplies for one child', 'ایک بچے کے لیے تعلیمی سامان')),
-    DonationTier(10000, Localized('Medical supplies for community camp', 'کمیونٹی کیمپ کے لیے طبی سامان')),
-    DonationTier(25000, Localized('Sponsor education for one child/month', 'ایک بچے کی ماہانہ تعلیمی کفالت')),
+    DonationTier(
+      500,
+      Localized(
+        'Provides a meal for a family of 4',
+        'چار افراد کے خاندان کے لیے ایک وقت کا کھانا',
+      ),
+    ),
+    DonationTier(
+      2000,
+      Localized(
+        'Monthly food ration for one family',
+        'ایک خاندان کے لیے ماہانہ راشن',
+      ),
+    ),
+    DonationTier(
+      5000,
+      Localized('School supplies for one child', 'ایک بچے کے لیے تعلیمی سامان'),
+    ),
+    DonationTier(
+      10000,
+      Localized(
+        'Medical supplies for community camp',
+        'کمیونٹی کیمپ کے لیے طبی سامان',
+      ),
+    ),
+    DonationTier(
+      25000,
+      Localized(
+        'Sponsor education for one child/month',
+        'ایک بچے کی ماہانہ تعلیمی کفالت',
+      ),
+    ),
   ];
 
   /// The largest tier the amount covers, used for the "your gift provides" hint.
@@ -257,13 +329,19 @@ abstract final class SampleData {
   static const activities = [
     Activity(
       title: Localized('Ramadan Food Drive', 'رمضان راشن مہم'),
-      description: Localized('Distributed 500 food packages', '500 راشن پیکج تقسیم کیے گئے'),
+      description: Localized(
+        'Distributed 500 food packages',
+        '500 راشن پیکج تقسیم کیے گئے',
+      ),
       period: Localized('June 2024', 'جون 2024'),
       reach: Localized('500 families', '500 خاندان'),
     ),
     Activity(
       title: Localized('School Supply Distribution', 'تعلیمی سامان کی تقسیم'),
-      description: Localized('Provided materials to 200 students', '200 طلبہ کو تعلیمی سامان فراہم کیا گیا'),
+      description: Localized(
+        'Provided materials to 200 students',
+        '200 طلبہ کو تعلیمی سامان فراہم کیا گیا',
+      ),
       period: Localized('May 2024', 'مئی 2024'),
       reach: Localized('200 students', '200 طلبہ'),
     ),
@@ -275,7 +353,10 @@ abstract final class SampleData {
     ),
     Activity(
       title: Localized('Eid Gift Program', 'عید تحائف پروگرام'),
-      description: Localized('Gifts for underprivileged children', 'مستحق بچوں کے لیے تحائف'),
+      description: Localized(
+        'Gifts for underprivileged children',
+        'مستحق بچوں کے لیے تحائف',
+      ),
       period: Localized('March 2024', 'مارچ 2024'),
       reach: Localized('150 children', '150 بچے'),
     ),

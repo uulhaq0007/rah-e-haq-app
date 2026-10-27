@@ -104,7 +104,9 @@ abstract final class AppFonts {
       color: color,
       height: height,
     );
-    return useGoogleFonts ? GoogleFonts.notoNastaliqUrdu(textStyle: style) : style;
+    return useGoogleFonts
+        ? GoogleFonts.notoNastaliqUrdu(textStyle: style)
+        : style;
   }
 }
 
@@ -166,8 +168,8 @@ class AppPalette extends ThemeExtension<AppPalette> {
   final Color shadow;
 
   List<BoxShadow> get cardShadow => [
-        BoxShadow(color: shadow, blurRadius: 24, offset: const Offset(0, 8)),
-      ];
+    BoxShadow(color: shadow, blurRadius: 24, offset: const Offset(0, 8)),
+  ];
 
   @override
   AppPalette copyWith() => this;
@@ -199,22 +201,23 @@ abstract final class AppTheme {
 
   static ThemeData _build(Brightness brightness, AppPalette p, bool isUrdu) {
     final isDark = brightness == Brightness.dark;
-    final scheme = ColorScheme.fromSeed(
-      seedColor: AppColors.primary,
-      brightness: brightness,
-    ).copyWith(
-      primary: isDark ? AppColors.teal500 : AppColors.primary,
-      onPrimary: Colors.white,
-      secondary: AppColors.secondary,
-      onSecondary: Colors.white,
-      tertiary: AppColors.accent,
-      error: AppColors.red500,
-      surface: p.surface,
-      onSurface: p.strong,
-      onSurfaceVariant: p.body,
-      outline: p.border,
-      outlineVariant: p.border,
-    );
+    final scheme =
+        ColorScheme.fromSeed(
+          seedColor: AppColors.primary,
+          brightness: brightness,
+        ).copyWith(
+          primary: isDark ? AppColors.teal500 : AppColors.primary,
+          onPrimary: Colors.white,
+          secondary: AppColors.secondary,
+          onSecondary: Colors.white,
+          tertiary: AppColors.accent,
+          error: AppColors.red500,
+          surface: p.surface,
+          onSurface: p.strong,
+          onSurfaceVariant: p.body,
+          outline: p.border,
+          outlineVariant: p.border,
+        );
     final text = _textTheme(p, isUrdu);
 
     OutlineInputBorder border(Color color, [double width = 1.5]) =>
@@ -244,8 +247,10 @@ abstract final class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: isDark ? const Color(0xFF162133) : Colors.white,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 16,
+        ),
         hintStyle: text.bodyMedium?.copyWith(color: p.muted),
         labelStyle: text.bodyMedium?.copyWith(color: p.body),
         floatingLabelStyle: text.bodyMedium?.copyWith(color: p.brand),
@@ -356,18 +361,59 @@ abstract final class AppTheme {
       );
     }
     return TextTheme(
-      displaySmall: AppFonts.display(fontSize: 33, color: p.strong, height: 1.15, letterSpacing: -0.5),
-      headlineMedium: AppFonts.display(fontSize: 26, color: p.strong, height: 1.2, letterSpacing: -0.3),
-      headlineSmall: AppFonts.display(fontSize: 22, color: p.strong, height: 1.25, letterSpacing: -0.2),
+      displaySmall: AppFonts.display(
+        fontSize: 33,
+        color: p.strong,
+        height: 1.15,
+        letterSpacing: -0.5,
+      ),
+      headlineMedium: AppFonts.display(
+        fontSize: 26,
+        color: p.strong,
+        height: 1.2,
+        letterSpacing: -0.3,
+      ),
+      headlineSmall: AppFonts.display(
+        fontSize: 22,
+        color: p.strong,
+        height: 1.25,
+        letterSpacing: -0.2,
+      ),
       titleLarge: AppFonts.display(fontSize: 18, color: p.strong, height: 1.3),
-      titleMedium: AppFonts.display(fontSize: 15.5, fontWeight: FontWeight.w600, color: p.strong, height: 1.35),
-      titleSmall: AppFonts.display(fontSize: 13.5, fontWeight: FontWeight.w600, color: p.strong, height: 1.35),
+      titleMedium: AppFonts.display(
+        fontSize: 15.5,
+        fontWeight: FontWeight.w600,
+        color: p.strong,
+        height: 1.35,
+      ),
+      titleSmall: AppFonts.display(
+        fontSize: 13.5,
+        fontWeight: FontWeight.w600,
+        color: p.strong,
+        height: 1.35,
+      ),
       bodyLarge: AppFonts.body(fontSize: 15.5, color: p.body, height: 1.55),
       bodyMedium: AppFonts.body(fontSize: 13.5, color: p.body, height: 1.55),
       bodySmall: AppFonts.body(fontSize: 12, color: p.muted, height: 1.5),
-      labelLarge: AppFonts.display(fontSize: 14.5, fontWeight: FontWeight.w600, color: p.strong, height: 1.3),
-      labelMedium: AppFonts.body(fontSize: 12, fontWeight: FontWeight.w600, color: p.body, height: 1.3),
-      labelSmall: AppFonts.body(fontSize: 10.5, fontWeight: FontWeight.w700, color: p.muted, height: 1.3, letterSpacing: 0.9),
+      labelLarge: AppFonts.display(
+        fontSize: 14.5,
+        fontWeight: FontWeight.w600,
+        color: p.strong,
+        height: 1.3,
+      ),
+      labelMedium: AppFonts.body(
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        color: p.body,
+        height: 1.3,
+      ),
+      labelSmall: AppFonts.body(
+        fontSize: 10.5,
+        fontWeight: FontWeight.w700,
+        color: p.muted,
+        height: 1.3,
+        letterSpacing: 0.9,
+      ),
     );
   }
 
@@ -377,12 +423,11 @@ abstract final class AppTheme {
     FontWeight weight = FontWeight.w700,
     Color? color,
     double height = 1.2,
-  }) =>
-      AppFonts.display(
-        fontSize: size,
-        fontWeight: weight,
-        color: color,
-        height: height,
-        letterSpacing: size >= 24 ? -0.5 : 0,
-      );
+  }) => AppFonts.display(
+    fontSize: size,
+    fontWeight: weight,
+    color: color,
+    height: height,
+    letterSpacing: size >= 24 ? -0.5 : 0,
+  );
 }

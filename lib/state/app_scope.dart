@@ -14,9 +14,8 @@ class SettingsScope extends InheritedNotifier<SettingsController> {
     required super.child,
   }) : super(notifier: controller);
 
-  static SettingsController of(BuildContext context) => context
-      .dependOnInheritedWidgetOfExactType<SettingsScope>()!
-      .notifier!;
+  static SettingsController of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<SettingsScope>()!.notifier!;
 
   /// Reads the controller without subscribing, e.g. from `initState`.
   static SettingsController read(BuildContext context) =>
@@ -31,9 +30,8 @@ class DonationsScope extends InheritedNotifier<DonationsController> {
     required super.child,
   }) : super(notifier: controller);
 
-  static DonationsController of(BuildContext context) => context
-      .dependOnInheritedWidgetOfExactType<DonationsScope>()!
-      .notifier!;
+  static DonationsController of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<DonationsScope>()!.notifier!;
 
   /// Reads the controller without subscribing, e.g. from `initState`.
   static DonationsController read(BuildContext context) =>

@@ -32,6 +32,7 @@ class AppButton extends StatelessWidget {
     this.loading = false,
     this.expand = true,
     this.height = 52,
+    this.horizontalPadding = 18,
   });
 
   final String label;
@@ -42,6 +43,7 @@ class AppButton extends StatelessWidget {
   final bool loading;
   final bool expand;
   final double height;
+  final double horizontalPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -51,57 +53,56 @@ class AppButton extends StatelessWidget {
     final Color foreground = switch (variant) {
       AppButtonVariant.brand ||
       AppButtonVariant.amber ||
-      AppButtonVariant.glass =>
-        Colors.white,
+      AppButtonVariant.glass => Colors.white,
       AppButtonVariant.outline || AppButtonVariant.soft => palette.brand,
     };
 
     final decoration = switch (variant) {
       AppButtonVariant.brand => BoxDecoration(
-          gradient: AppColors.brandGradient,
-          borderRadius: BorderRadius.circular(height),
-          boxShadow: enabled
-              ? [
-                  BoxShadow(
-                    color: AppColors.primary.withValues(alpha: 0.32),
-                    blurRadius: 18,
-                    offset: const Offset(0, 8),
-                  ),
-                ]
-              : null,
-        ),
+        gradient: AppColors.brandGradient,
+        borderRadius: BorderRadius.circular(height),
+        boxShadow: enabled
+            ? [
+                BoxShadow(
+                  color: AppColors.primary.withValues(alpha: 0.32),
+                  blurRadius: 18,
+                  offset: const Offset(0, 8),
+                ),
+              ]
+            : null,
+      ),
       AppButtonVariant.amber => BoxDecoration(
-          color: AppColors.secondary,
-          borderRadius: BorderRadius.circular(height),
-          boxShadow: enabled
-              ? [
-                  BoxShadow(
-                    color: AppColors.secondary.withValues(alpha: 0.35),
-                    blurRadius: 18,
-                    offset: const Offset(0, 8),
-                  ),
-                ]
-              : null,
-        ),
+        color: AppColors.secondary,
+        borderRadius: BorderRadius.circular(height),
+        boxShadow: enabled
+            ? [
+                BoxShadow(
+                  color: AppColors.secondary.withValues(alpha: 0.35),
+                  blurRadius: 18,
+                  offset: const Offset(0, 8),
+                ),
+              ]
+            : null,
+      ),
       AppButtonVariant.outline => BoxDecoration(
-          borderRadius: BorderRadius.circular(height),
-          border: Border.all(
-            color: palette.brand.withValues(alpha: 0.35),
-            width: 1.5,
-          ),
+        borderRadius: BorderRadius.circular(height),
+        border: Border.all(
+          color: palette.brand.withValues(alpha: 0.35),
+          width: 1.5,
         ),
+      ),
       AppButtonVariant.glass => BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(height),
-          border: Border.all(
-            color: Colors.white.withValues(alpha: 0.32),
-            width: 1.5,
-          ),
+        color: Colors.white.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(height),
+        border: Border.all(
+          color: Colors.white.withValues(alpha: 0.32),
+          width: 1.5,
         ),
+      ),
       AppButtonVariant.soft => BoxDecoration(
-          color: palette.brandSoft,
-          borderRadius: BorderRadius.circular(height),
-        ),
+        color: palette.brandSoft,
+        borderRadius: BorderRadius.circular(height),
+      ),
     };
 
     final labelStyle = context.text.labelLarge?.copyWith(color: foreground);
@@ -122,11 +123,9 @@ class AppButton extends StatelessWidget {
           Icon(icon, size: 19, color: foreground),
         if (loading || icon != null) const SizedBox(width: 8),
         Flexible(
-          child: Text(
-            label,
-            style: labelStyle,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(label, style: labelStyle, maxLines: 1),
           ),
         ),
         if (trailingIcon != null) ...[
@@ -150,7 +149,7 @@ class AppButton extends StatelessWidget {
             child: SizedBox(
               height: height,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18),
+                padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                 child: Center(child: content),
               ),
             ),

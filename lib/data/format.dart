@@ -29,7 +29,9 @@ String decimal(double value, {int digits = 2}) => _trim(value, digits: digits);
 String _trim(double value, {int digits = 1}) {
   var text = value.toStringAsFixed(digits);
   if (text.contains('.')) {
-    text = text.replaceFirst(RegExp(r'0+$'), '').replaceFirst(RegExp(r'\.$'), '');
+    text = text
+        .replaceFirst(RegExp(r'0+$'), '')
+        .replaceFirst(RegExp(r'\.$'), '');
   }
   return text;
 }

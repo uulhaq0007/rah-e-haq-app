@@ -18,7 +18,8 @@ class CampaignDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final campaign = SampleData.campaignById(campaignId) ?? SampleData.campaigns.first;
+    final campaign =
+        SampleData.campaignById(campaignId) ?? SampleData.campaigns.first;
     final s = context.s;
     final urdu = context.isUrdu;
     final palette = context.palette;
@@ -38,7 +39,8 @@ class CampaignDetailScreen extends StatelessWidget {
                 padding: const EdgeInsetsDirectional.only(start: 12),
                 child: _CircleButton(
                   icon: Icons.arrow_back_rounded,
-                  onTap: () => context.canPop() ? context.pop() : context.go('/'),
+                  onTap: () =>
+                      context.canPop() ? context.pop() : context.go('/'),
                 ),
               ),
               actions: [
@@ -77,15 +79,23 @@ class CampaignDetailScreen extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              _Tag(icon: campaign.cause.icon, label: campaign.cause.label(s)),
+                              _Tag(
+                                icon: campaign.cause.icon,
+                                label: campaign.cause.label(s),
+                              ),
                               const SizedBox(width: 8),
-                              _Tag(icon: Icons.place_rounded, label: campaign.location.of(urdu)),
+                              _Tag(
+                                icon: Icons.place_rounded,
+                                label: campaign.location.of(urdu),
+                              ),
                             ],
                           ),
                           const SizedBox(height: 10),
                           Text(
                             campaign.title.of(urdu),
-                            style: context.text.headlineSmall?.copyWith(color: Colors.white),
+                            style: context.text.headlineSmall?.copyWith(
+                              color: Colors.white,
+                            ),
                           ),
                         ],
                       ),
@@ -102,8 +112,12 @@ class CampaignDetailScreen extends StatelessWidget {
                   const SizedBox(height: 24),
                   Text(s.aboutCampaign, style: context.text.titleLarge),
                   const SizedBox(height: 8),
-                  Text(campaign.summary.of(urdu),
-                      style: context.text.bodyLarge?.copyWith(color: palette.strong)),
+                  Text(
+                    campaign.summary.of(urdu),
+                    style: context.text.bodyLarge?.copyWith(
+                      color: palette.strong,
+                    ),
+                  ),
                   const SizedBox(height: 8),
                   Text(campaign.story.of(urdu), style: context.text.bodyLarge),
                   const SizedBox(height: 24),
@@ -123,11 +137,19 @@ class CampaignDetailScreen extends StatelessWidget {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(Icons.verified_user_rounded, color: palette.brand, size: 22),
+                        Icon(
+                          Icons.verified_user_rounded,
+                          color: palette.brand,
+                          size: 22,
+                        ),
                         const SizedBox(width: 10),
                         Expanded(
-                          child: Text(s.verifiedNote,
-                              style: context.text.bodyMedium?.copyWith(color: palette.strong)),
+                          child: Text(
+                            s.verifiedNote,
+                            style: context.text.bodyMedium?.copyWith(
+                              color: palette.strong,
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -149,7 +171,9 @@ class CampaignDetailScreen extends StatelessWidget {
     final message = context.s.linkCopied;
     try {
       await Clipboard.setData(
-        ClipboardData(text: 'https://rah-e-haq.example/campaign/${campaign.id}'),
+        ClipboardData(
+          text: 'https://rah-e-haq.example/campaign/${campaign.id}',
+        ),
       );
     } on PlatformException {
       // Clipboard can be unavailable; nothing else to do.
@@ -222,9 +246,11 @@ class _ProgressCard extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      Text(stat.$1,
-                          textDirection: TextDirection.ltr,
-                          style: AppTheme.figure(19, color: palette.strong)),
+                      Text(
+                        stat.$1,
+                        textDirection: TextDirection.ltr,
+                        style: AppTheme.figure(19, color: palette.strong),
+                      ),
                       Text(stat.$2, style: context.text.bodySmall),
                     ],
                   ),
@@ -250,7 +276,8 @@ class _UseTile extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       radius: 18,
       shadow: false,
-      onTap: () => context.go('/donate?campaign=${campaign.id}&amount=${use.amount}'),
+      onTap: () =>
+          context.go('/donate?campaign=${campaign.id}&amount=${use.amount}'),
       child: Row(
         children: [
           Container(
@@ -267,7 +294,10 @@ class _UseTile extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: Text(use.label.of(context.isUrdu), style: context.text.bodyMedium),
+            child: Text(
+              use.label.of(context.isUrdu),
+              style: context.text.bodyMedium,
+            ),
           ),
           Icon(Icons.chevron_right_rounded, color: palette.muted),
         ],
@@ -338,7 +368,10 @@ class _Tag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: context.isUrdu ? 1 : 5),
+      padding: EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: context.isUrdu ? 1 : 5,
+      ),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.18),
         borderRadius: BorderRadius.circular(99),
@@ -349,7 +382,10 @@ class _Tag extends StatelessWidget {
         children: [
           Icon(icon, size: 14, color: Colors.white),
           const SizedBox(width: 5),
-          Text(label, style: context.text.labelMedium?.copyWith(color: Colors.white)),
+          Text(
+            label,
+            style: context.text.labelMedium?.copyWith(color: Colors.white),
+          ),
         ],
       ),
     );

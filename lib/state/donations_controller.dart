@@ -29,8 +29,8 @@ class DonationsController extends ChangeNotifier {
 
   int count([DonationStatus? status]) => byStatus(status).length;
 
-  int total(DonationStatus status) => byStatus(status)
-      .fold(0, (sum, donation) => sum + donation.amount);
+  int total(DonationStatus status) =>
+      byStatus(status).fold(0, (sum, donation) => sum + donation.amount);
 
   Donation submit({
     required int amount,

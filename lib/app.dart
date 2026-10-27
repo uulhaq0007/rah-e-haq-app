@@ -24,10 +24,12 @@ class RahEHaqApp extends StatefulWidget {
 }
 
 class _RahEHaqAppState extends State<RahEHaqApp> {
-  late final SettingsController _settings = widget.settings ??
+  late final SettingsController _settings =
+      widget.settings ??
       (kIsWeb ? SettingsController.fromUri(Uri.base) : SettingsController());
-  final DonationsController _donations =
-      DonationsController(SampleData.seedDonations);
+  final DonationsController _donations = DonationsController(
+    SampleData.seedDonations,
+  );
   final GoRouter _router = createRouter();
 
   @override

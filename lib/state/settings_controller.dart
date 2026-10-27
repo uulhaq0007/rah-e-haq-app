@@ -6,12 +6,10 @@ import '../models/zakat.dart';
 /// App-wide preferences: language, theme and the Zakat reference rates.
 class SettingsController extends ChangeNotifier {
   SettingsController({
-    bool isUrdu = false,
-    ThemeMode themeMode = ThemeMode.light,
-    ZakatRates rates = ZakatRates.defaults,
-  })  : _isUrdu = isUrdu,
-        _themeMode = themeMode,
-        _rates = rates;
+    this._isUrdu = false,
+    this._themeMode = ThemeMode.light,
+    this._rates = ZakatRates.defaults,
+  });
 
   /// Reads `?lang=ur` and `?theme=dark` so a screenshot URL can open the app
   /// straight into Urdu or dark mode.

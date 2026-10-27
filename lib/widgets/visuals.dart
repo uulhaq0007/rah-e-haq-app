@@ -8,63 +8,62 @@ import '../theme.dart';
 
 extension CauseVisuals on Cause {
   IconData get icon => switch (this) {
-        Cause.general => Icons.volunteer_activism_rounded,
-        Cause.zakat => Icons.mosque_rounded,
-        Cause.food => Icons.restaurant_rounded,
-        Cause.education => Icons.school_rounded,
-        Cause.healthcare => Icons.medical_services_rounded,
-        Cause.relief => Icons.health_and_safety_rounded,
-      };
+    Cause.general => Icons.volunteer_activism_rounded,
+    Cause.zakat => Icons.mosque_rounded,
+    Cause.food => Icons.restaurant_rounded,
+    Cause.education => Icons.school_rounded,
+    Cause.healthcare => Icons.medical_services_rounded,
+    Cause.relief => Icons.health_and_safety_rounded,
+  };
 
   Color get color => switch (this) {
-        Cause.general => AppColors.primary,
-        Cause.zakat => AppColors.amber600,
-        Cause.food => AppColors.emerald600,
-        Cause.education => const Color(0xFFA855F7),
-        Cause.healthcare => const Color(0xFFF43F5E),
-        Cause.relief => AppColors.blue500,
-      };
+    Cause.general => AppColors.primary,
+    Cause.zakat => AppColors.amber600,
+    Cause.food => AppColors.emerald600,
+    Cause.education => const Color(0xFFA855F7),
+    Cause.healthcare => const Color(0xFFF43F5E),
+    Cause.relief => AppColors.blue500,
+  };
 
   String label(S s) => s.causeNames[index];
 }
 
 extension MethodVisuals on PaymentMethod {
   IconData get icon => switch (this) {
-        PaymentMethod.bank => Icons.account_balance_rounded,
-        PaymentMethod.jazzcash => Icons.bolt_rounded,
-        PaymentMethod.easypaisa => Icons.account_balance_wallet_rounded,
-      };
+    PaymentMethod.bank => Icons.account_balance_rounded,
+    PaymentMethod.jazzcash => Icons.bolt_rounded,
+    PaymentMethod.easypaisa => Icons.account_balance_wallet_rounded,
+  };
 
   Color get color => switch (this) {
-        PaymentMethod.bank => AppColors.primary,
-        PaymentMethod.jazzcash => const Color(0xFFE11D48),
-        PaymentMethod.easypaisa => const Color(0xFF16A34A),
-      };
+    PaymentMethod.bank => AppColors.primary,
+    PaymentMethod.jazzcash => const Color(0xFFE11D48),
+    PaymentMethod.easypaisa => const Color(0xFF16A34A),
+  };
 
   String label(S s) => s.methodNames[index];
 }
 
 extension StatusVisuals on DonationStatus {
   IconData get icon => switch (this) {
-        DonationStatus.pending => Icons.hourglass_top_rounded,
-        DonationStatus.verified => Icons.verified_rounded,
-        DonationStatus.rejected => Icons.cancel_rounded,
-      };
+    DonationStatus.pending => Icons.hourglass_top_rounded,
+    DonationStatus.verified => Icons.verified_rounded,
+    DonationStatus.rejected => Icons.cancel_rounded,
+  };
 
   Color color(bool dark) => switch (this) {
-        DonationStatus.pending =>
-          dark ? AppColors.amber400 : AppColors.amber600,
-        DonationStatus.verified =>
-          dark ? const Color(0xFF4ADE80) : const Color(0xFF16A34A),
-        DonationStatus.rejected =>
-          dark ? const Color(0xFFF87171) : AppColors.red500,
-      };
+    DonationStatus.pending => dark ? AppColors.amber400 : AppColors.amber600,
+    DonationStatus.verified =>
+      dark ? const Color(0xFF4ADE80) : const Color(0xFF16A34A),
+    DonationStatus.rejected =>
+      dark ? const Color(0xFFF87171) : AppColors.red500,
+  };
 
   String label(S s, {bool long = false}) => switch (this) {
-        DonationStatus.pending => long ? s.statusPending : s.pending,
-        DonationStatus.verified => s.verified,
-        DonationStatus.rejected => s.rejected,
-      };
+    DonationStatus.pending => long ? s.statusPending : s.pending,
+    DonationStatus.verified => s.verified,
+    DonationStatus.rejected => s.rejected,
+  };
 }
 
 /// Coloured pill showing a donation's verification status.
@@ -155,14 +154,14 @@ class _ReceiptArt extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = method.color;
     Widget line(double width, {double opacity = 0.12}) => Container(
-          width: width,
-          height: 7,
-          margin: const EdgeInsets.only(bottom: 9),
-          decoration: BoxDecoration(
-            color: AppColors.slate900.withValues(alpha: opacity),
-            borderRadius: BorderRadius.circular(4),
-          ),
-        );
+      width: width,
+      height: 7,
+      margin: const EdgeInsets.only(bottom: 9),
+      decoration: BoxDecoration(
+        color: AppColors.slate900.withValues(alpha: opacity),
+        borderRadius: BorderRadius.circular(4),
+      ),
+    );
 
     return Directionality(
       textDirection: TextDirection.ltr,
@@ -212,8 +211,11 @@ class _ReceiptArt extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const Icon(Icons.check_circle_rounded,
-                    color: Color(0xFF16A34A), size: 38),
+                child: const Icon(
+                  Icons.check_circle_rounded,
+                  color: Color(0xFF16A34A),
+                  size: 38,
+                ),
               ),
             ),
             Transform.translate(
@@ -256,7 +258,10 @@ class _ReceiptArt extends StatelessWidget {
                   for (final width in [120.0, 90.0, 132.0, 70.0, 110.0])
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [line(width * 0.4, opacity: 0.08), line(width * 0.5)],
+                      children: [
+                        line(width * 0.4, opacity: 0.08),
+                        line(width * 0.5),
+                      ],
                     ),
                 ],
               ),
@@ -294,7 +299,10 @@ class Avatar extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: [AppColors.amber400, AppColors.amber600],
         ),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.5), width: 3),
+        border: Border.all(
+          color: Colors.white.withValues(alpha: 0.5),
+          width: 3,
+        ),
       ),
       child: Text(
         initials,
@@ -314,7 +322,8 @@ class SuccessBadge extends StatelessWidget {
       tween: Tween(begin: 0.6, end: 1),
       duration: const Duration(milliseconds: 500),
       curve: Curves.easeOutBack,
-      builder: (context, scale, child) => Transform.scale(scale: scale, child: child),
+      builder: (context, scale, child) =>
+          Transform.scale(scale: scale, child: child),
       child: Container(
         width: 104,
         height: 104,

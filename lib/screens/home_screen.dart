@@ -11,6 +11,7 @@ import '../widgets/buttons.dart';
 import '../widgets/campaign_card.dart';
 import '../widgets/common.dart';
 import '../widgets/hero.dart';
+import '../widgets/impact_strip.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -129,18 +130,22 @@ class _Hero extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
+                          flex: 9,
                           child: AppButton(
                             label: s.heroDonate,
                             icon: Icons.favorite_rounded,
                             variant: AppButtonVariant.amber,
+                            horizontalPadding: 14,
                             onPressed: () => context.go('/donate'),
                           ),
                         ),
                         const SizedBox(width: 12),
                         Expanded(
+                          flex: 11,
                           child: AppButton(
                             label: s.heroVolunteer,
                             variant: AppButtonVariant.glass,
+                            horizontalPadding: 14,
                             onPressed: () => context.go('/volunteer'),
                           ),
                         ),
@@ -181,12 +186,12 @@ class _StatsCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 6),
       child: IntrinsicHeight(
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             for (var i = 0; i < stats.length; i++) ...[
               if (i > 0) VerticalDivider(width: 1, color: palette.border),
               Expanded(
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       stats[i].$1,
@@ -255,7 +260,10 @@ class _Programs extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          EyebrowPill(label: s.programsEyebrow, icon: Icons.track_changes_rounded),
+          EyebrowPill(
+            label: s.programsEyebrow,
+            icon: Icons.track_changes_rounded,
+          ),
           const SizedBox(height: 10),
           HighlightTitle(
             lead: s.programsTitleLead,
@@ -298,7 +306,11 @@ class _ProgramCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          IconTile(icon: program.icon, color: program.gradient.first, gradient: program.gradient),
+          IconTile(
+            icon: program.icon,
+            color: program.gradient.first,
+            gradient: program.gradient,
+          ),
           const SizedBox(height: 12),
           Text(
             program.title.of(urdu),
@@ -307,7 +319,10 @@ class _ProgramCard extends StatelessWidget {
           ),
           const Spacer(),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 9, vertical: urdu ? 0 : 4),
+            padding: EdgeInsets.symmetric(
+              horizontal: 9,
+              vertical: urdu ? 0 : 4,
+            ),
             decoration: BoxDecoration(
               color: palette.brandSoft,
               borderRadius: BorderRadius.circular(99),
@@ -333,6 +348,7 @@ class _ProgramCard extends StatelessWidget {
     final cause = SampleData.programCauses[index];
     showModalBottomSheet<void>(
       context: context,
+      useRootNavigator: true,
       useSafeArea: true,
       builder: (sheetContext) => SafeArea(
         child: Padding(
@@ -348,11 +364,20 @@ class _ProgramCard extends StatelessWidget {
                 size: 56,
               ),
               const SizedBox(height: 16),
-              Text(program.title.of(urdu), style: sheetContext.text.headlineSmall),
+              Text(
+                program.title.of(urdu),
+                style: sheetContext.text.headlineSmall,
+              ),
               const SizedBox(height: 8),
-              Text(program.description.of(urdu), style: sheetContext.text.bodyLarge),
+              Text(
+                program.description.of(urdu),
+                style: sheetContext.text.bodyLarge,
+              ),
               const SizedBox(height: 14),
-              EyebrowPill(label: program.metric.of(urdu), icon: Icons.insights_rounded),
+              EyebrowPill(
+                label: program.metric.of(urdu),
+                icon: Icons.insights_rounded,
+              ),
               const SizedBox(height: 24),
               AppButton(
                 label: s.donateToCause,
@@ -365,62 +390,6 @@ class _ProgramCard extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-/// Founded / communities / lives impacted strip from the web impact section.
-class ImpactStrip extends StatelessWidget {
-  const ImpactStrip({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final s = context.s;
-    final items = [
-      (s.foundedIn, '${SampleData.foundedYear}'),
-      (s.communities, '${SampleData.communitiesServed}+'),
-      (s.livesImpacted, '${compact(SampleData.livesImpacted)}+'),
-    ];
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: AlignmentDirectional.centerStart,
-          end: AlignmentDirectional.centerEnd,
-          colors: [AppColors.primary, AppColors.emerald700],
-        ),
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primary.withValues(alpha: 0.25),
-            blurRadius: 20,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          for (final item in items)
-            Expanded(
-              child: Column(
-                children: [
-                  Text(
-                    context.isUrdu ? item.$1 : item.$1.toUpperCase(),
-                    style: context.text.labelSmall?.copyWith(
-                      color: Colors.white.withValues(alpha: 0.72),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    item.$2,
-                    textDirection: TextDirection.ltr,
-                    style: AppTheme.figure(24, color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-        ],
       ),
     );
   }
@@ -442,18 +411,26 @@ class _StorySection extends StatelessWidget {
         children: [
           EyebrowPill(label: s.storiesEyebrow, icon: Icons.star_rounded),
           const SizedBox(height: 10),
-          HighlightTitle(lead: s.storiesTitleLead, highlight: s.storiesTitleHighlight),
+          HighlightTitle(
+            lead: s.storiesTitleLead,
+            highlight: s.storiesTitleHighlight,
+          ),
           const SizedBox(height: 14),
           AppCard(
             padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(Icons.format_quote_rounded,
-                    size: 40, color: palette.brand.withValues(alpha: 0.25)),
+                Icon(
+                  Icons.format_quote_rounded,
+                  size: 40,
+                  color: palette.brand.withValues(alpha: 0.25),
+                ),
                 Text(
                   story.quote.of(urdu),
-                  style: context.text.bodyLarge?.copyWith(color: palette.strong),
+                  style: context.text.bodyLarge?.copyWith(
+                    color: palette.strong,
+                  ),
                 ),
                 const SizedBox(height: 18),
                 Row(
@@ -474,7 +451,10 @@ class _StorySection extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(story.name, style: AppTheme.figure(15, color: palette.strong)),
+                          Text(
+                            story.name,
+                            style: AppTheme.figure(15, color: palette.strong),
+                          ),
                           Text(
                             '${story.role.of(urdu)} · ${story.location.of(urdu)}',
                             style: context.text.bodySmall,
@@ -485,8 +465,11 @@ class _StorySection extends StatelessWidget {
                     Row(
                       children: List.generate(
                         5,
-                        (_) => const Icon(Icons.star_rounded,
-                            size: 16, color: AppColors.secondary),
+                        (_) => const Icon(
+                          Icons.star_rounded,
+                          size: 16,
+                          color: AppColors.secondary,
+                        ),
                       ),
                     ),
                   ],
@@ -549,8 +532,9 @@ class _VolunteerCta extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   s.ctaSubtitle,
-                  style: context.text.bodyMedium
-                      ?.copyWith(color: Colors.white.withValues(alpha: 0.82)),
+                  style: context.text.bodyMedium?.copyWith(
+                    color: Colors.white.withValues(alpha: 0.82),
+                  ),
                 ),
                 const SizedBox(height: 18),
                 AppButton(
@@ -585,9 +569,14 @@ class _TrustedLine extends StatelessWidget {
       children: [
         const Icon(Icons.star_rounded, size: 18, color: AppColors.secondary),
         const SizedBox(width: 6),
-        Text(
-          context.s.trusted(groupDigits(SampleData.totalDonors)),
-          style: context.text.bodySmall?.copyWith(color: context.palette.body),
+        Flexible(
+          child: Text(
+            context.s.trusted(groupDigits(SampleData.totalDonors)),
+            textAlign: TextAlign.center,
+            style: context.text.bodySmall?.copyWith(
+              color: context.palette.body,
+            ),
+          ),
         ),
       ],
     );
