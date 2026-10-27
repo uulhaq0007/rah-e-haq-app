@@ -50,10 +50,7 @@ class ProfileScreen extends StatelessWidget {
                           icon: Icons.calculate_rounded,
                           color: AppColors.amber600,
                           title: s.zakatCalculator,
-                          subtitle: s.ratesPill(
-                            rs(settings.rates.goldPerTola),
-                            rs(settings.rates.silverPerTola),
-                          ),
+                          subtitle: s.goldRate(rs(settings.rates.goldPerTola)),
                           onTap: () => context.go('/zakat'),
                         ),
                         _MenuTile(

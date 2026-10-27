@@ -580,38 +580,42 @@ class _VolunteerHero extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Row(
-              children: [
-                for (var i = 0; i < stats.length; i++) ...[
-                  if (i > 0) const SizedBox(width: 10),
-                  Expanded(
-                    child: GlassPanel(
-                      radius: 18,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 6,
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            stats[i].$1,
-                            textDirection: TextDirection.ltr,
-                            style: AppTheme.figure(18, color: Colors.white),
-                          ),
-                          Text(
-                            stats[i].$2,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: context.text.bodySmall?.copyWith(
-                              color: Colors.white.withValues(alpha: 0.72),
+            IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  for (var i = 0; i < stats.length; i++) ...[
+                    if (i > 0) const SizedBox(width: 10),
+                    Expanded(
+                      child: GlassPanel(
+                        radius: 18,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 6,
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              stats[i].$1,
+                              textDirection: TextDirection.ltr,
+                              style: AppTheme.figure(18, color: Colors.white),
                             ),
-                          ),
-                        ],
+                            Text(
+                              stats[i].$2,
+                              maxLines: 2,
+                              textAlign: TextAlign.center,
+                              style: context.text.bodySmall?.copyWith(
+                                color: Colors.white.withValues(alpha: 0.72),
+                                height: context.isUrdu ? 1.7 : 1.3,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ],
-              ],
+              ),
             ),
           ],
         ),

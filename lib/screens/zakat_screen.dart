@@ -460,7 +460,7 @@ class _HeroFigure extends StatelessWidget {
             color: Colors.white.withValues(alpha: 0.7),
           ),
         ),
-        const SizedBox(height: 2),
+        SizedBox(height: context.isUrdu ? 6 : 2),
         FittedBox(
           fit: BoxFit.scaleDown,
           alignment: AlignmentDirectional.centerStart,

@@ -89,7 +89,7 @@ class _ContactScreenState extends State<ContactScreen> {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 4, 20, 32),
         children: [
-          EyebrowPill(label: s.contactUs, icon: Icons.support_agent_rounded),
+          EyebrowPill(label: s.getInTouch, icon: Icons.support_agent_rounded),
           const SizedBox(height: 10),
           HighlightTitle(
             lead: s.contactTitleLead,

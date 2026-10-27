@@ -66,7 +66,7 @@ class EyebrowPill extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = context.palette;
     final foreground = onDark ? Colors.white : palette.brand;
-    return Container(
+    final pill = Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
         color: onDark ? Colors.white.withValues(alpha: 0.1) : palette.brandSoft,
@@ -96,6 +96,13 @@ class EyebrowPill extends StatelessWidget {
           ),
         ],
       ),
+    );
+    // Hug the label even when a list hands down a full-width constraint.
+    return Align(
+      alignment: AlignmentDirectional.centerStart,
+      widthFactor: 1,
+      heightFactor: 1,
+      child: pill,
     );
   }
 }

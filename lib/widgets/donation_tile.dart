@@ -194,7 +194,7 @@ class DonationTile extends StatelessWidget {
           IconTile(
             icon: donation.cause.icon,
             color: donation.cause.color,
-            size: 46,
+            size: 42,
           ),
           const SizedBox(width: 12),
           Expanded(

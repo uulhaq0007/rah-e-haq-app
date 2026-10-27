@@ -533,7 +533,7 @@ class _StepsStrip extends StatelessWidget {
                   const SizedBox(height: 6),
                   Text(
                     steps[i],
-                    maxLines: 1,
+                    maxLines: 2,
                     textAlign: TextAlign.center,
                     style: context.text.labelMedium?.copyWith(
                       color: palette.strong,

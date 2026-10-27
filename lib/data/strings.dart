@@ -515,8 +515,9 @@ class S {
   String get donationsLabel => _t('Donations', 'عطیات');
   String get preferences => _t('Preferences', 'ترجیحات');
   String get language => _t('Language', 'زبان');
-  String get languageHint =>
-      _t('English or Urdu, right-to-left', 'اردو یا انگریزی');
+  String get languageHint => _t('English or Urdu', 'اردو یا انگریزی');
+  String goldRate(String gold) =>
+      _t('Gold $gold per tola', 'سونا $gold فی تولہ');
   String get darkMode => _t('Dark mode', 'ڈارک موڈ');
   String get darkModeHint =>
       _t('Easier on the eyes at night', 'رات میں آنکھوں کے لیے آرام دہ');
@@ -580,6 +581,7 @@ class S {
   String get galleryTitleHighlight => _t('Impact', 'لمحات');
 
   // Contact
+  String get getInTouch => _t('Get In Touch', 'رابطہ کریں');
   String get contactTitleLead => _t("We'd Love To", 'ہم آپ سے');
   String get contactTitleHighlight => _t('Hear From You', 'سننا چاہیں گے');
   String get contactSubtitle => _t(
