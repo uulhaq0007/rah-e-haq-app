@@ -102,6 +102,7 @@ class S {
   String stillNeeded(String amount) => _t('$amount still needed', '$amount مزید درکار');
   String get reachLabel => _t('Reach', 'رسائی');
   String get locationLabel => _t('Location', 'مقام');
+  String get funded => _t('Funded', 'مکمل');
   String get donorsLabel => _t('Donors', 'عطیہ دہندگان');
   String get daysLeftLabel => _t('Days left', 'دن باقی');
   String get share => _t('Share', 'شیئر');
